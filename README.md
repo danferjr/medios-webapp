@@ -7,3 +7,5 @@ Crear llaves SSH nos permitirá modificar o acceder a nuestros repositorios en G
     ssh-add ~/.ssh/id_ed25519
 ```
 Realiza una aplicación web la cual le permita transmitir una determinada frecuencia a través de una linea de transmisión.
+
+Leer los requisitos funcionales

@@ -268,6 +268,56 @@ const SignalChart = ({ amplitude, frequency, phase }) => {
 export default SignalChart;
 
 **************************************************
+Objetivos:
+El usuario debe poder:
+
+- Escoger la amplitud, frecuencia y fase de la señal del generador.                 -> REALIZADO
+- Elegir la impedancia del generador (Zg= Rg+jXg).
+- Elegir entre cable coaxial o línea bifilar.
+- Elegir las características geométricas y eléctricas del cable coaxial o bifilar.
+- Elegir la impedancia de carga (Zl = Rl + jXl)
+**************************************************
+- Elegir la impedancia del generador (Zg= Rg+jXg).
+
+Zg= Rg+jXg
+
+Rg = ? resistencia en el generador?
+Xg = ? distancia en el generador?
+
+
+**************************************************
+- Elegir entre cable coaxial o línea bifilar.
+
+caja de dos opciones [Coaxial, Bifilar]
+
+**************************************************
+- Elegir las características geométricas y eléctricas del cable coaxial o bifilar.
+a ? 
+b ? 
+e ?
+
+**************************************************
+- Elegir la impedancia de carga (Zl = Rl + jXl)
+
+Zl = Rl + jXl
+
+Rl = ? resistencia en la carga?
+jXl = ?  
+**************************************************
+++++++++++++++++++++++++++++++++++++++++++++++++++
+El usuario debe visualizar
+
+- Las entradas de valores. -> REALIZADO(para grafica Seno)
+- La línea de transmisión elegida.
+- La gráfica de voltaje a lo largo de la línea.
+- La gráfica de corriente a lo largo de la línea.
+- La gráfica de impedancia a lo largo de la línea.
+- La gráfica de coeficiente de reflexión a lo largo de la línea.
+- El valor de la impedancia característica de la línea.
+- El valor de los parámetros distribuidos de la línea.
+- La constante de atenuación, la constante de fase, y por lo tanto, la constante de propagación de la línea.
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
 Datos que se le solicita al usuario:
 a
 b

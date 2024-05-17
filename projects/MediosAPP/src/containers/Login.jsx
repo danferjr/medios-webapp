@@ -13,7 +13,7 @@ const Login = () => {
                     <h3>Integrantes</h3>
                     <ul>
                         <li>Andrea</li>
-                        <li>Duber Elian</li>
+                        
                         <li>Camilo Sauca</li>
                         <li>Daniel Fernando Morales C</li>
                     </ul>

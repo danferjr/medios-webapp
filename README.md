@@ -340,5 +340,615 @@ L = u/pi cosh^-1(c/b)
 C = piE/cosh^-1(c/b)
 
 
+*********************************************************
+Grafica SENO funcionando
+
+import React, { useState } from 'react';
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from 'recharts';
+
+// Función para generar puntos de una señal sinusoidal
+const generateSinusoidalData = (amplitude, frequency, phase, duration, interval) => {
+  const data = [];
+  for (let t = 0; t <= duration; t += interval) {
+    const value = amplitude * Math.sin(2 * Math.PI * frequency * t + phase);
+    data.push({ time: t, value: value });
+  }
+  return data;
+}
+
+const SignalChart = () => {
+  const [amplitude, setAmplitude] = useState(2);
+  const [frequency, setFrequency] = useState(1);
+  const [phase, setPhase] = useState(0);
+  const [duration] = useState(10); // Duración de la señal en segundos
+  const [interval] = useState(0.1); // Intervalo de muestreo en segundos
+
+  const handleAmplitudeChange = (event) => {
+    setAmplitude(parseFloat(event.target.value));
+  };
+
+  const handleFrequencyChange = (event) => {
+    setFrequency(parseFloat(event.target.value));
+  };
+
+  const handlePhaseChange = (event) => {
+    setPhase(parseFloat(event.target.value));
+  };
+
+  // Generar puntos de la señal sinusoidal
+  const signalData = generateSinusoidalData(amplitude, frequency, phase, duration, interval);
+
+  return (
+    <div>
+      <div>
+        Amplitude: 
+        <input type="number" value={amplitude} onChange={handleAmplitudeChange} />
+      </div>
+      <div>
+        Frequency: 
+        <input type="number" value={frequency} onChange={handleFrequencyChange} />
+      </div>
+      <div>
+        Phase: 
+        <input type="number" value={phase} onChange={handlePhaseChange} />
+      </div>
+      <ResponsiveContainer width="100%" aspect={2}>
+        <AreaChart
+          width={500}
+          height={400}
+          data={signalData}
+          margin={{
+            top:10,
+            right:30,
+            left:0,
+            bottom:0
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3"/>
+          <XAxis dataKey="time"/>
+          <YAxis/>
+          <Tooltip />
+          <Area type="monotone" dataKey="value" stackId="1" stroke='#8884d8' fill='#8884d8' />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
+export default SignalChart;
+
+
+*************************************************************
+
+grafica con segudo intem añadido
+
+import React, { useState } from 'react';
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from 'recharts';
+
+// Función para generar puntos de una señal sinusoidal
+const generateSinusoidalData = (amplitude, frequency, phase, duration, interval) => {
+  const data = [];
+  for (let t = 0; t <= duration; t += interval) {
+    const value = amplitude * Math.sin(2 * Math.PI * frequency * t + phase);
+    data.push({ time: t, value: value });
+  }
+  return data;
+}
+
+const SignalChart = () => {
+  const [amplitude, setAmplitude] = useState(2);
+  const [frequency, setFrequency] = useState(1);
+  const [phase, setPhase] = useState(0);
+  const [Rg, setRg] = useState(1); // Resistencia del generador
+  const [Xg, setXg] = useState(0); // Reactancia del generador
+  const [duration] = useState(10); // Duración de la señal en segundos
+  const [interval] = useState(0.1); // Intervalo de muestreo en segundos
+
+  const handleAmplitudeChange = (event) => {
+    setAmplitude(parseFloat(event.target.value));
+  };
+
+  const handleFrequencyChange = (event) => {
+    setFrequency(parseFloat(event.target.value));
+  };
+
+  const handlePhaseChange = (event) => {
+    setPhase(parseFloat(event.target.value));
+  };
+
+  const handleRgChange = (event) => {
+    setRg(parseFloat(event.target.value));
+  };
+
+  const handleXgChange = (event) => {
+    setXg(parseFloat(event.target.value));
+  };
+
+  // Generar puntos de la señal sinusoidal
+  const signalData = generateSinusoidalData(amplitude, frequency, phase, duration, interval);
+
+  return (
+    <div>
+      <div>
+        Amplitude: 
+        <input type="number" value={amplitude} onChange={handleAmplitudeChange} />
+      </div>
+      <div>
+        Frequency: 
+        <input type="number" value={frequency} onChange={handleFrequencyChange} />
+      </div>
+      <div>
+        Phase: 
+        <input type="number" value={phase} onChange={handlePhaseChange} />
+      </div>
+      <div>
+        Rg (Resistive component): 
+        <input type="number" value={Rg} onChange={handleRgChange} />
+      </div>
+      <div>
+        Xg (Reactive component): 
+        <input type="number" value={Xg} onChange={handleXgChange} />
+      </div>
+      <ResponsiveContainer width="100%" aspect={2}>
+        <AreaChart
+          width={500}
+          height={400}
+          data={signalData}
+          margin={{
+            top:10,
+            right:30,
+            left:0,
+            bottom:0
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3"/>
+          <XAxis dataKey="time"/>
+          <YAxis/>
+          <Tooltip />
+          <Area type="monotone" dataKey="value" stackId="1" stroke='#8884d8' fill='#8884d8' />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
+export default SignalChart;
+********************************************************************************
+
+Codigo con los datos de entrada funcionando
+
+import React, { useState } from 'react';
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from 'recharts';
+
+// Función para generar puntos de una señal sinusoidal
+const generateSinusoidalData = (amplitude, frequency, phase, duration, interval) => {
+  const data = [];
+  for (let t = 0; t <= duration; t += interval) {
+    const value = amplitude * Math.sin(2 * Math.PI * frequency * t + phase);
+    data.push({ time: t, value: value });
+  }
+  return data;
+}
+
+const SignalChart = () => {
+  const [amplitude, setAmplitude] = useState(2);
+  const [frequency, setFrequency] = useState(1);
+  const [phase, setPhase] = useState(0);
+  const [Rg, setRg] = useState(1); // Resistencia del generador
+  const [Xg, setXg] = useState(0); // Reactancia del generador
+  const [Zl, setZl] = useState({ Rl: 1, Xl: 0 }); // Impedancia de carga
+  const [cableType, setCableType] = useState('coaxial'); // Tipo de cable
+  const [cableProperties, setCableProperties] = useState({ diameter: 1, separation: 1 }); // Propiedades del cable
+  const [duration] = useState(10); // Duración de la señal en segundos
+  const [interval] = useState(0.1); // Intervalo de muestreo en segundos
+
+  const handleAmplitudeChange = (event) => {
+    setAmplitude(parseFloat(event.target.value));
+  };
+
+  const handleFrequencyChange = (event) => {
+    setFrequency(parseFloat(event.target.value));
+  };
+
+  const handlePhaseChange = (event) => {
+    setPhase(parseFloat(event.target.value));
+  };
+
+  const handleRgChange = (event) => {
+    setRg(parseFloat(event.target.value));
+  };
+
+  const handleXgChange = (event) => {
+    setXg(parseFloat(event.target.value));
+  };
+
+  const handleRlChange = (event) => {
+    setZl({ ...Zl, Rl: parseFloat(event.target.value) });
+  };
+
+  const handleXlChange = (event) => {
+    setZl({ ...Zl, Xl: parseFloat(event.target.value) });
+  };
+
+  const handleCableTypeChange = (event) => {
+    setCableType(event.target.value);
+  };
+
+  const handleCablePropertyChange = (property) => (event) => {
+    setCableProperties({ ...cableProperties, [property]: parseFloat(event.target.value) });
+  };
+
+  // Generar puntos de la señal sinusoidal
+  const signalData = generateSinusoidalData(amplitude, frequency, phase, duration, interval);
+
+  return (
+    <div>
+      <div>
+        Amplitude: 
+        <input type="number" value={amplitude} onChange={handleAmplitudeChange} />
+      </div>
+      <div>
+        Frequency: 
+        <input type="number" value={frequency} onChange={handleFrequencyChange} />
+      </div>
+      <div>
+        Phase: 
+        <input type="number" value={phase} onChange={handlePhaseChange} />
+      </div>
+      <div>
+        Rg (Resistive component): 
+        <input type="number" value={Rg} onChange={handleRgChange} />
+      </div>
+      <div>
+        Xg (Reactive component): 
+        <input type="number" value={Xg} onChange={handleXgChange} />
+      </div>
+      <div>
+        Cable Type: 
+        <select value={cableType} onChange={handleCableTypeChange}>
+          <option value="coaxial">Coaxial</option>
+          <option value="bifilar">Bifilar</option>
+        </select>
+      </div>
+      {cableType === 'coaxial' ? (
+        <div>
+          <div>
+            Diameter: 
+            <input type="number" value={cableProperties.diameter} onChange={handleCablePropertyChange('diameter')} />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div>
+            Separation: 
+            <input type="number" value={cableProperties.separation} onChange={handleCablePropertyChange('separation')} />
+          </div>
+        </div>
+      )}
+      <div>
+        Rl (Load resistance): 
+        <input type="number" value={Zl.Rl} onChange={handleRlChange} />
+      </div>
+      <div>
+        Xl (Load reactance): 
+        <input type="number" value={Zl.Xl} onChange={handleXlChange} />
+      </div>
+      <ResponsiveContainer width="100%" aspect={2}>
+        <AreaChart
+          width={500}
+          height={400}
+          data={signalData}
+          margin={{
+            top:10,
+            right:30,
+            left:0,
+            bottom:0
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3"/>
+          <XAxis dataKey="time"/>
+          <YAxis/>
+          <Tooltip />
+          <Area type="monotone" dataKey="value" stackId="1" stroke='#8884d8' fill='#8884d8' />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
+export default SignalChart;
+
+
+*******************************************************************************************
+
+
+import React, { useState, useEffect } from 'react';
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Line,
+  LineChart,
+  Legend
+} from 'recharts';
+
+// Función para generar puntos de una señal sinusoidal
+const generateSinusoidalData = (amplitude, frequency, phase, duration, interval) => {
+  const data = [];
+  for (let t = 0; t <= duration; t += interval) {
+    const value = amplitude * Math.sin(2 * Math.PI * frequency * t + phase);
+    data.push({ time: t, value: value });
+  }
+  return data;
+}
+
+// Función para calcular los parámetros de la línea de transmisión
+const calculateTransmissionLineParameters = (cableType, cableProperties, Zl, Zg, signalData) => {
+  // Aquí realizarás los cálculos necesarios para los parámetros de la línea de transmisión
+  // Los resultados de estos cálculos se usarán para generar los datos para las gráficas
+  // Por simplicidad, aquí se muestran valores de ejemplo
+
+  const length = 10; // Longitud de la línea en metros (ejemplo)
+  const Z0 = 50; // Impedancia característica (ejemplo)
+  const alpha = 0.01; // Constante de atenuación (ejemplo)
+  const beta = 0.1; // Constante de fase (ejemplo)
+  const gamma = alpha + beta * 1j; // Constante de propagación (ejemplo)
+
+  // Generar datos de ejemplo para las gráficas
+  const voltageData = [];
+  const currentData = [];
+  const impedanceData = [];
+  const reflectionCoefficientData = [];
+
+  for (let x = 0; x <= length; x += 0.1) {
+    const voltage = amplitude * Math.exp(-alpha * x) * Math.cos(beta * x + phase);
+    const current = voltage / Z0;
+    const impedance = Z0; // Aquí puedes añadir un cálculo más complejo si es necesario
+    const reflectionCoefficient = (Zl - Z0) / (Zl + Z0);
+
+    voltageData.push({ position: x, value: voltage });
+    currentData.push({ position: x, value: current });
+    impedanceData.push({ position: x, value: impedance });
+    reflectionCoefficientData.push({ position: x, value: reflectionCoefficient });
+  }
+
+  return {
+    voltageData,
+    currentData,
+    impedanceData,
+    reflectionCoefficientData,
+    Z0,
+    alpha,
+    beta,
+    gamma
+  };
+}
+
+const SignalChart = () => {
+  const [amplitude, setAmplitude] = useState(2);
+  const [frequency, setFrequency] = useState(1);
+  const [phase, setPhase] = useState(0);
+  const [Rg, setRg] = useState(1); // Resistencia del generador
+  const [Xg, setXg] = useState(0); // Reactancia del generador
+  const [Zl, setZl] = useState({ Rl: 1, Xl: 0 }); // Impedancia de carga
+  const [cableType, setCableType] = useState('coaxial'); // Tipo de cable
+  const [cableProperties, setCableProperties] = useState({ diameter: 1, separation: 1 }); // Propiedades del cable
+  const [duration] = useState(10); // Duración de la señal en segundos
+  const [interval] = useState(0.1); // Intervalo de muestreo en segundos
+
+  const handleAmplitudeChange = (event) => {
+    setAmplitude(parseFloat(event.target.value));
+  };
+
+  const handleFrequencyChange = (event) => {
+    setFrequency(parseFloat(event.target.value));
+  };
+
+  const handlePhaseChange = (event) => {
+    setPhase(parseFloat(event.target.value));
+  };
+
+  const handleRgChange = (event) => {
+    setRg(parseFloat(event.target.value));
+  };
+
+  const handleXgChange = (event) => {
+    setXg(parseFloat(event.target.value));
+  };
+
+  const handleRlChange = (event) => {
+    setZl({ ...Zl, Rl: parseFloat(event.target.value) });
+  };
+
+  const handleXlChange = (event) => {
+    setZl({ ...Zl, Xl: parseFloat(event.target.value) });
+  };
+
+  const handleCableTypeChange = (event) => {
+    setCableType(event.target.value);
+  };
+
+  const handleCablePropertyChange = (property) => (event) => {
+    setCableProperties({ ...cableProperties, [property]: parseFloat(event.target.value) });
+  };
+
+  // Generar puntos de la señal sinusoidal
+  const signalData = generateSinusoidalData(amplitude, frequency, phase, duration, interval);
+
+  // Calcular parámetros de la línea de transmisión
+  const {
+    voltageData,
+    currentData,
+    impedanceData,
+    reflectionCoefficientData,
+    Z0,
+    alpha,
+    beta,
+    gamma
+  } = calculateTransmissionLineParameters(cableType, cableProperties, Zl, { Rg, Xg }, signalData);
+
+  return (
+    <div>
+      <div>
+        <h3>Inputs</h3>
+        <div>
+          Amplitude: 
+          <input type="number" value={amplitude} onChange={handleAmplitudeChange} />
+        </div>
+        <div>
+          Frequency: 
+          <input type="number" value={frequency} onChange={handleFrequencyChange} />
+        </div>
+        <div>
+          Phase: 
+          <input type="number" value={phase} onChange={handlePhaseChange} />
+        </div>
+        <div>
+          Rg (Resistive component): 
+          <input type="number" value={Rg} onChange={handleRgChange} />
+        </div>
+        <div>
+          Xg (Reactive component): 
+          <input type="number" value={Xg} onChange={handleXgChange} />
+        </div>
+        <div>
+          Cable Type: 
+          <select value={cableType} onChange={handleCableTypeChange}>
+            <option value="coaxial">Coaxial</option>
+            <option value="bifilar">Bifilar</option>
+          </select>
+        </div>
+        {cableType === 'coaxial' ? (
+          <div>
+            <div>
+              Diameter: 
+              <input type="number" value={cableProperties.diameter} onChange={handleCablePropertyChange('diameter')} />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div>
+              Separation: 
+              <input type="number" value={cableProperties.separation} onChange={handleCablePropertyChange('separation')} />
+            </div>
+          </div>
+        )}
+        <div>
+          Rl (Load resistance): 
+          <input type="number" value={Zl.Rl} onChange={handleRlChange} />
+        </div>
+        <div>
+          Xl (Load reactance): 
+          <input type="number" value={Zl.Xl} onChange={handleXlChange} />
+        </div>
+      </div>
+      
+      <h3>Transmission Line: {cableType === 'coaxial' ? 'Coaxial' : 'Bifilar'}</h3>
+      <div>Characteristic Impedance (Z0): {Z0} Ω</div>
+      <div>Attenuation Constant (α): {alpha} Np/m</div>
+      <div>Phase Constant (β): {beta} rad/m</div>
+      <div>Propagation Constant (γ): {gamma} /m</div>
+
+      <ResponsiveContainer width="100%" aspect={2}>
+        <LineChart
+          data={voltageData}
+          margin={{
+            top: 10, right: 30, left: 0, bottom: 0
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="position" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="value" stroke="#8884d8" name="Voltage" />
+        </LineChart>
+      </ResponsiveContainer>
+
+      <ResponsiveContainer width="100%" aspect={2}>
+        <LineChart
+          data={currentData}
+          margin={{
+            top: 10, right: 30, left: 0, bottom: 0
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="position" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="value" stroke="#82ca9d" name="Current" />
+        </LineChart>
+      </ResponsiveContainer>
+
+      <ResponsiveContainer width="100%" aspect={2}>
+        <LineChart
+          data={impedanceData}
+          margin={{
+            top: 10, right: 30, left: 0, bottom: 0
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="position" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="value" stroke="#ff7300" name="Impedance" />
+        </LineChart>
+      </ResponsiveContainer>
+
+      <ResponsiveContainer width="100%" aspect={2}>
+        <LineChart
+          data={reflectionCoefficientData}
+          margin={{
+            top: 10, right: 30, left: 0, bottom: 0
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="position" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="value" stroke="#ff7300" name="Reflection Coefficient" />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
+export default SignalChart;
+
+
+**************************************************************************
+
+
 
 
